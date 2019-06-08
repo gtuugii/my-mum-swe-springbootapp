@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Student List</title>
+	<div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+<div class="container">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title"><span>Student List</span></h3>
+		</div>
+		<div id="formContent" class="panel-body">
+
+		<table class="table table-striped">
+			<thead>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Email</th>
+				<th>Actions</th>
+			</thead>
+			<tbody>
+				<tr th:each="student : ${students}">
+					<td th:text="${student.firstName}"></td>
+					<td th:text="${student.lastName}"></td>
+					<td th:text="${student.email}"></td>
+					<td>
+						<a th:href="@{'/student/' + ${student.id}}">Edit</a>&nbsp;
+						<a th:href="@{'/student/delete/' + ${student.id}}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>
